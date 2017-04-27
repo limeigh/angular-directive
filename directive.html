@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<title>directive</title>
+	<style>
+		.red{
+			background-color: red
+		}
+		.green{
+			background-color: green
+		}
+	</style>
+</head>
+<body ng-app="myApp">	
+	<div my-btn></div>
+	<div class="hello-world1"></div>
+	<hello-world2 mystyle="green" attributes="attributes">aaa</hello-world2>
+	<!-- <div class="hello-world2">bbb</div>
+	<div hello-world2>ccc</div> -->	
+	<script src="angular.js"></script>
+	<script>
+		var app=angular.module("myApp",[])
+		app.directive("myBtn",[function(){
+			return {
+				template:"<button>以属性形式显示</button>",
+				restrict:"A"
+			}
+		}])
+		app.directive("helloWorld1",[function(){
+			return {
+				templateUrl:"./01-template.html",
+				restrict:"C",
+				replace:true
+			}
+		}])
+		app.directive("helloWorld2",[function(){
+			return {
+				templateUrl:"tpl",
+				restrict:"ACE",
+				replace:true,
+				transclude:true,
+				scope:{
+					// tmp:"@mystyle"
+					mystyle:"@"
+				},
+				link:function(scope,element,attributes){
+					scope.msg='hello world!'
+					element.on('click',function(){
+						alert('click me!')
+					})
+					console.log('test')
+					console.log(element)
+					console.log(attributes)
+				}
+			}
+		}])
+	</script>
+	<script id="tpl" type="text/ng-template">
+		<div class="flag">
+			<h2>
+				{{msg}}
+			</h2>
+			<button ng-transclude class="{{mystyle}}">登录</button>
+		</div>
+	</script>
+</body>
+</html>
