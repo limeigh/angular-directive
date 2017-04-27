@@ -21,6 +21,7 @@
 	<hello-world2 mystyle="green" attributes="attributes">aaa</hello-world2>
 	<!-- <div class="hello-world2">bbb</div>
 	<div hello-world2>ccc</div> -->	
+	<div hello-world2></div>
 	<script src="angular.js"></script>
 	<script>
 		var app=angular.module("myApp",[])
@@ -35,6 +36,7 @@
 				templateUrl:"./01-template.html",
 				restrict:"C",
 				replace:true
+				restrict:"C"
 			}
 		}])
 		app.directive("helloWorld2",[function(){
@@ -56,6 +58,7 @@
 					console.log(element)
 					console.log(attributes)
 				}
+				templateUrl:"tpl"
 			}
 		}])
 	</script>
@@ -65,6 +68,10 @@
 				{{msg}}
 			</h2>
 			<button ng-transclude class="{{mystyle}}">登录</button>
+		<div>
+			<h2>
+				hello world!
+			</h2>
 		</div>
 	</script>
 </body>
