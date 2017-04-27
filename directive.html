@@ -2,23 +2,28 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
 	<title>directive</title>
 </head>
 <body ng-app="myApp">	
 	<div my-btn></div>
-	<div hello-world1></div>
+	<div class="hello-world1"></div>
 	<div hello-world2></div>
 	<script src="angular.js"></script>
 	<script>
 		var app=angular.module("myApp",[])
 		app.directive("myBtn",[function(){
 			return {
-				template:"<button>我是按钮</button>"
+				template:"<button>以属性形式显示</button>",
+				restrict:"A"
 			}
 		}])
 		app.directive("helloWorld1",[function(){
 			return {
-				templateUrl:"./01-template.html"
+				templateUrl:"./01-template.html",
+				restrict:"C"
 			}
 		}])
 		app.directive("helloWorld2",[function(){
